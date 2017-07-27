@@ -11,10 +11,13 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        api.getAll().then(res => {
-            this.setState((state) => ({
-                books: state.books.concat(res)
-            }))
+        api.getAll().then(books => {
+            console.log(books);
+            books.map(book => {
+                this.setState((state) => ({
+                    books: state.books.concat([book])
+                }))
+            })
         });
     }
 

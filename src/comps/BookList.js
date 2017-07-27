@@ -1,18 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import Book from './Book';
 
 class BookList extends Component {
-    state = {
-        list: this.props.list,
-    }
-
     render() {
-        const books = this.state.list;
-
+        const books = this.props.list;
         return (
             <div className="book-list">
-                {books.map(book => (
-                    <p>{book}</p>
+                {books.map((book, index) => (
+                    <Book key={index} info={book} />
                 ))}
             </div>
         )
