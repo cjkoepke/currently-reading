@@ -4,21 +4,64 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
-.app-header {
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app-header,
+.search-wrap__query {
     background: #323232;
     color: #fff;
     padding: 40px;
+}
+
+.search-wrap__input {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 24px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.search-wrap__input:focus {
+    outline: 0;
+}
+
+.search-wrap__input::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.search-wrap__input::-moz-placeholder {
+    color: #fff;
 }
 
 .app-header__title {
     margin: 0;
 }
 
-.book-shelf {
+.book-grid {
     display: grid;
-    grid-template-columns: repeat( 3, 1fr );
+    grid-template-columns: repeat( 6, minmax(128px, 1fr) );
     grid-template-rows: repeat( auto, 300px );
+    grid-gap: 40px;
     padding: 40px;
+}
+
+.book-card {
+    display: grid;
+    grid-template-rows: 189px repeat(2, 1fr);
+}
+
+.book-card__title {
+    margin-bottom: 5px;
+    align-self: 1;
+}
+
+.book-card__authors {
+    font-size: .8em;
+    font-style: italic;
 }
 
 #nav {

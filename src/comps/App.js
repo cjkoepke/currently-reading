@@ -17,13 +17,15 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header />
                 <Route exact path="/" render={() => (
-                    <div className="book-shelf">
-                        <CurrentReads />
-                        <PastReads />
-                        <FutureReads />
-                        <Link to="/search" id="nav">Add Book</Link>
+                    <div className="wrap">
+                        <div className="book-shelf">
+                            <Header />
+                            <CurrentReads />
+                            <PastReads />
+                            <FutureReads />
+                            <Link to="/search" id="nav">Add Book</Link>
+                        </div>
                     </div>
                 )} />
                 <Route path="/search" component={Search} />

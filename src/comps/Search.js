@@ -12,15 +12,20 @@ class Search extends Component {
         error: false
     }
 
+    componentDidMount() {
+        this.searchInput.focus();
+    }
+
     handleChange = (e) => {
         const query = e.target.value;
         this.setState({query});
 
         // Debounce the BookList update.
         query &&
-            _debounce(this.updateSearch(query), 500);
+            _debounce(this.updateSearch(query), 500)
 
-        query === ''
+        // Reset books if search query is blank.
+        query === '' &&
             this.setState({books: []});
     }
 
@@ -42,18 +47,24 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="search-page">
-                <h2>Searching!</h2>
-                <input
-                    className="search-page__query"
-                    type="text"
-                    placeholder="Search here..."
-                    value={this.state.query}
-                    onChange={this.handleChange} />
-                {!this.state.error && (
-                    <BookList books={this.state.books} />
-                )}
-                {this.state.error && <h2>Something went wrong!</h2>}
+            <div className="search-wrap">
+                <div className="search-wrap__query">
+                    <input
+                        className="search-wrap__input"
+                        type="text"
+                        placeholder="Search here..."
+                        value={this.state.query}
+                        onChange={this.handleChange}
+                        ref={input => { this.searchInput = input }} />
+                </div>
+                <div className="wrap">
+                    {!this.state.error && (
+                        <BookList
+                            books={this.state.books}
+                            ref={list => { this.bookList = list }} />
+                    )}
+                    {this.state.error && <h2>Something went wrong!</h2>}
+                </div>
                 <Link id="nav" to="/">Back to Home</Link>
             </div>
         )
