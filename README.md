@@ -14,18 +14,12 @@ Either using NPM or Yarn (I prefer the Yarn interface - see below), run the foll
 
 **NPM:**
 ```bash
-npm install
-```
-```bash
-npm run start
+npm install && run start
 ```
 
 **Yarn:**
 ```bash
-yarn install
-```
-```bash
-yarn start
+yarn install && start
 ```
 
 ## Dependencies
