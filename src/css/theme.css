@@ -49,6 +49,12 @@ body {
     padding: 40px;
 }
 
+.book-grid__notice {
+    grid-column: span 6;
+    font-size: 48px;
+    text-align: center;
+}
+
 .book-card {
     display: grid;
     grid-template-rows: 189px repeat(2, 1fr);

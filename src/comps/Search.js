@@ -58,12 +58,15 @@ class Search extends Component {
                         ref={input => { this.searchInput = input }} />
                 </div>
                 <div className="wrap">
+                    {!this.state.query && (
+                        <h4 className="book-grid__notice">Whatchya looking for?</h4>
+                    )}
                     {!this.state.error && (
                         <BookList
                             books={this.state.books}
-                            ref={list => { this.bookList = list }} />
+                            handleBookChange={this.props.handleBookChange} />
                     )}
-                    {this.state.error && <h2>Something went wrong!</h2>}
+                    {this.state.error && <h2 className="book-grid__notice">Something went wrong :(</h2>}
                 </div>
                 <Link id="nav" to="/">Back to Home</Link>
             </div>
