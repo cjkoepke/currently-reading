@@ -6,8 +6,11 @@ import Header from './Header';
 import Search from './Search';
 
 class App extends Component {
-    state = {
-        myBooks: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            myBooks: []
+        };
     }
 
     componentDidMount() {

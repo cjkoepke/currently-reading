@@ -6,10 +6,13 @@ import _debounce from 'debounce';
 import sortBy from 'sort-by';
 
 class Search extends Component {
-    state = {
-        query: '',
-        books: [],
-        error: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: '',
+            books: [],
+            error: false
+        }
     }
 
     componentDidMount() {

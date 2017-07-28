@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 
 class BookList extends Component {
-    state = {
-        books: this.props.books,
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: this.props.books,
+        }
     }
 
     render() {
