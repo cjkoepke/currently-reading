@@ -35,7 +35,7 @@ class Book extends Component {
                         ))}
                     </div>
                 )}
-                <select onChange={this.handleShelfUpdate} value={this.state.shelf} className="book-location-picker">
+                <select onChange={this.handleShelfUpdate} value={this.state.shelf} className="book-card__location">
                     <option disabled label="Choose a Shelf:" />
                     <option value="wantToRead">Want to Read</option>
                     <option value="currentlyReading">Currently Reading</option>

@@ -37,26 +37,27 @@ class App extends Component {
         return (
             <div className="App">
                 <Route exact path="/" render={() => (
-                    <div className="wrap">
-                        <div className="book-shelf">
-                            <Header />
+                    <div>
+                        <Link to="/search" id="nav"><span>Add Book &rarr;</span></Link>
+                        <Header />
+                        <div className="wrap">
+                            <div className="book-shelf">
 
-                            <h4>Currently Reading</h4>
-                            <BookList
-                                books={currentBooks}
-                                handleBookChange={this.updateBook} />
+                                <h2 className="book-shelf__section">Currently Reading</h2>
+                                <BookList
+                                    books={currentBooks}
+                                    handleBookChange={this.updateBook} />
 
-                            <h4>Want to Read</h4>
-                            <BookList
-                                books={futureBooks}
-                                handleBookChange={this.updateBook} />
+                                <h2 className="book-shelf__section">Want to Read</h2>
+                                <BookList
+                                    books={futureBooks}
+                                    handleBookChange={this.updateBook} />
 
-                            <h4>Have Read</h4>
-                            <BookList
-                                books={pastBooks}
-                                handleBookChange={this.updateBook} />
-
-                            <Link to="/search" id="nav">Add Book</Link>
+                                <h2 className="book-shelf__section">Have Read</h2>
+                                <BookList
+                                    books={pastBooks}
+                                    handleBookChange={this.updateBook} />
+                            </div>
                         </div>
                     </div>
                 )} />
@@ -64,6 +65,9 @@ class App extends Component {
                     <Search
                         shelfData={books}
                         handleBookChange={this.updateBook} />
+                )} />
+                <Route path="/" render={() => (
+                    <p style={{textAlign:'center'}}>Built from scratch, by <a rel="noopener noreferrer" href="https://twitter.com/cjkoepke" target="_blank">@cjkoepke</a></p>
                 )} />
             </div>
         );

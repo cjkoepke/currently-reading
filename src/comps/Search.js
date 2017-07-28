@@ -65,8 +65,8 @@ class Search extends Component {
                         });
                     })
                     .catch(err => {
+                        console.log(err);
                         this.setState({error: true});
-                        throw Error(err);
                     })
             , 500)
 
@@ -89,6 +89,7 @@ class Search extends Component {
 
         return (
             <div className="search-wrap">
+                <Link id="nav" to="/"><span>&larr; Back to Home</span></Link>
                 <div className="search-wrap__query">
                     <input
                         className="search-wrap__input"
@@ -109,7 +110,6 @@ class Search extends Component {
                     )}
                     {this.state.error && <h2 className="book-grid__notice">That doesn't match any results :(</h2>}
                 </div>
-                <Link id="nav" to="/">Back to Home</Link>
             </div>
         )
     }
