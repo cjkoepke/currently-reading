@@ -25,19 +25,23 @@ class Search extends Component {
             _debounce(this.updateSearch(query), 500)
 
         // Reset books if search query is blank.
-        query === '' &&
-            this.setState({books: []});
+        !query &&
+            this.setState({
+                books: [],
+                error: false
+        });
     }
 
     updateSearch = (query) => {
         api.search(query, 10)
             .then(books => {
-                if (Array.isArray(books)) {
-                    books.sort(sortBy('title'));
-                    this.setState({
-                        books: books
-                    })
+                if (!books.length) {
+                    throw new Error( `The returned query was not an array: ${books.error}` );
                 }
+                this.setState({
+                    books: books.sort(sortBy('title')),
+                    error: false
+                })
             })
             .catch(err => {
                 console.log(err);
@@ -66,7 +70,7 @@ class Search extends Component {
                             books={this.state.books}
                             handleBookChange={this.props.handleBookChange} />
                     )}
-                    {this.state.error && <h2 className="book-grid__notice">Something went wrong :(</h2>}
+                    {this.state.error && <h2 className="book-grid__notice">That doesn't match any results :(</h2>}
                 </div>
                 <Link id="nav" to="/">Back to Home</Link>
             </div>

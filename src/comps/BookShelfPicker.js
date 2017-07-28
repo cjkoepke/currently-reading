@@ -17,12 +17,14 @@ class BookLocationPicker extends Component {
     }
 
     render() {
+        console.log(this.props.book.title, this.props.book.shelf, this.state.shelf)
         return(
             <select onChange={this.handleShelfSelect} value={this.state.shelf} className="book-location-picker">
-                <option value="">Choose a Shelf:</option>
+                <option disabled label="Choose a Shelf:" />
                 <option value="wantToRead">Want to Read</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="read">Have Read</option>
+                <option value="none">None</option>
             </select>
         )
     }
