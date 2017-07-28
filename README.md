@@ -1,6 +1,8 @@
 # Currently Reading
 An application to track reading progress and status in a local environment. I built this from scratch, including hierarchy, styling, and composition.
 
+It uses the `create-react-app` project by Facebook for setup and bundling.
+
 The project uses a mock API to handle book request, retrieved from the source [Udacity repository](https://github.com/udacity/reactnd-project-myreads-starter/blob/master/src/BooksAPI.js).
 
 ## Starting the Env
