@@ -54,8 +54,14 @@ class Search extends Component {
     }
 
     render() {
-            api.search('finance').then(res => console.log(res));
-            api.get('74XNzF_al3MC').then(res => console.log(res));
+            /**
+             * Discrepency in search results here. The first call returns
+             * a shelf property of "wantToRead" for the book id of the second call.
+             * The second call returns a shelf property of "none".
+             */
+            // api.search('finance').then(res => console.log(res));
+            // api.get('74XNzF_al3MC').then(res => console.log(res));
+
         return (
             <div className="search-wrap">
                 <div className="search-wrap__query">

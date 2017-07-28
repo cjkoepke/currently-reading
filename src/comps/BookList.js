@@ -12,7 +12,6 @@ class BookList extends Component {
 
     render() {
         const books = this.props.books;
-        console.log(books);
         return (
             <ul className="book-grid">
                 {books.map((book, index) => (
