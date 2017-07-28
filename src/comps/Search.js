@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropType from 'prop-types';
 import BookList from './BookList';
 import * as api from '../utils/BooksAPI';
 import { Link } from 'react-router-dom';
@@ -19,6 +20,26 @@ class Search extends Component {
         this.searchInput.focus();
     }
 
+    validateBooks = (books) => {
+        const shelfBooks = this.props.shelfData;
+
+        const validateBooks = books.map(book => {
+
+            book.shelf = 'none';
+
+            shelfBooks.forEach(shelfBook => {
+                if (book.id === shelfBook.id) {
+                    book.shelf = shelfBook.shelf;
+                }
+            });
+
+            return book;
+
+        });
+
+        return validateBooks;
+    }
+
     handleChange = (e) => {
 
         // Immediately update input state.
@@ -34,14 +55,18 @@ class Search extends Component {
                             throw new Error( `The returned query was not an array: ${books.error}` );
                         }
 
+                        // Validate response against book shelf data.
+                        return this.validateBooks(books);
+                    })
+                    .then(validated => {
                         this.setState({
-                            books: books,
+                            books: validated,
                             error: false
                         });
                     })
                     .catch(err => {
-                        console.log(err);
                         this.setState({error: true});
+                        throw Error(err);
                     })
             , 500)
 
@@ -88,6 +113,10 @@ class Search extends Component {
             </div>
         )
     }
+}
+
+Search.propTypes = {
+    shelfData: PropType.array.isRequired
 }
 
 export default Search;
