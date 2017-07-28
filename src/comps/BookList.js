@@ -12,16 +12,15 @@ class BookList extends Component {
 
     render() {
         const books = this.props.books;
+        console.log(books);
         return (
             <ul className="book-grid">
-                {books.length > 0 && (
-                    books.map((book, index) => (
+                {books.map((book, index) => (
                         <Book
-                            key={index}
+                            key={book.id + index}
                             handleUpdate={this.props.handleBookChange}
                             book={book} />
-                    ))
-                )}
+                ))}
             </ul>
         )
     }

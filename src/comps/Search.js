@@ -3,7 +3,7 @@ import BookList from './BookList';
 import * as api from '../utils/BooksAPI';
 import { Link } from 'react-router-dom';
 import _debounce from 'debounce';
-import sortBy from 'sort-by';
+// import sortBy from 'sort-by';
 
 class Search extends Component {
     constructor(props) {
@@ -20,39 +20,42 @@ class Search extends Component {
     }
 
     handleChange = (e) => {
+
+        // Immediately update input state.
         const query = e.target.value;
         this.setState({query});
 
-        // Debounce the BookList update.
+        // Debounce the BookList update to avoid overload.
         query &&
-            _debounce(this.updateSearch(query), 500)
+            _debounce(
+                api.search(query)
+                    .then(books => {
+                        if (!books.length) {
+                            throw new Error( `The returned query was not an array: ${books.error}` );
+                        }
 
-        // Reset books if search query is blank.
+                        this.setState({
+                            books: books,
+                            error: false
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        this.setState({error: true});
+                    })
+            , 500)
+
+        // Reset books if search query is empty.
         !query &&
             this.setState({
                 books: [],
                 error: false
-        });
-    }
-
-    updateSearch = (query) => {
-        api.search(query, 10)
-            .then(books => {
-                if (!books.length) {
-                    throw new Error( `The returned query was not an array: ${books.error}` );
-                }
-                this.setState({
-                    books: books.sort(sortBy('title')),
-                    error: false
-                })
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({error: true});
             });
     }
 
     render() {
+            api.search('finance').then(res => console.log(res));
+            api.get('74XNzF_al3MC').then(res => console.log(res));
         return (
             <div className="search-wrap">
                 <div className="search-wrap__query">
@@ -65,7 +68,7 @@ class Search extends Component {
                         ref={input => { this.searchInput = input }} />
                 </div>
                 <div className="wrap">
-                    {!this.state.query && (
+                    {this.state.query === '' && (
                         <h4 className="book-grid__notice">Whatchya looking for?</h4>
                     )}
                     {!this.state.error && (
