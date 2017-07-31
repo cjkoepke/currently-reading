@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
     <header className="app-header">
-        <h1 className="app-header__title">Currently Reading</h1>
+        <h1 className="app-header__title">MyReads</h1>
     </header>
 )
 

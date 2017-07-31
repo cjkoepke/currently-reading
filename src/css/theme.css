@@ -20,6 +20,12 @@ p {
     padding: 0 40px;
 }
 
+@media only screen and (max-width: 1100px) {
+    .wrap {
+        max-width: 100%;
+    }
+}
+
 .app-header,
 .search-wrap__query {
     background: #194756;
@@ -106,6 +112,19 @@ p {
     grid-template-columns: repeat( 5, 1fr );
     margin-bottom: 40px;
     padding-left: 0;
+    width: 100%;
+}
+
+@media only screen and (max-width: 1100px) {
+    .book-grid {
+        grid-template-columns: repeat( 3, 1fr );
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .book-grid {
+        grid-template-columns: repeat( 2, 1fr );
+    }
 }
 
 .book-grid li {
@@ -114,8 +133,20 @@ p {
 }
 
 .book-grid .book-grid__filter {
-    grid-column: span 6;
+    grid-column: span 5;
     padding: 0;
+}
+
+@media only screen and (max-width: 1100px ) {
+    .book-grid .book-grid__filter {
+        grid-column: span 3;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .book-grid .book-grid__filter {
+        grid-column: span 2;
+    }
 }
 
 .book-grid .book-grid__filter li,
@@ -125,7 +156,6 @@ p {
 }
 
 .book-grid .book-grid__filter .book-card {
-    float: right;
     padding: 20px;
 }
 
