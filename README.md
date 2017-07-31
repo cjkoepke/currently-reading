@@ -12,16 +12,16 @@ To start the project, first clone this repository to your computer:
 git clone https://github.com/cjkoepke/currently-reading.git
 ```
 
-Either using NPM or Yarn (I prefer the Yarn interface - see below), run the following commands:
+Navigate to the `currently-reading` folder. Using either NPM or Yarn (I prefer the Yarn interface - see below), run the following commands:
 
 **NPM:**
 ```bash
-npm install && run start
+npm install && npm run start
 ```
 
 **Yarn:**
 ```bash
-yarn install && start
+yarn install && yarn start
 ```
 
 ## Dependencies
