@@ -74,7 +74,7 @@ class Search extends Component {
 
     updateResults = (query) => {
         _debounce(
-            api.search(query)
+            api.search(query, 20)
                 .then(books => {
                     if (!books.length) {
                         throw new Error( `The returned query was not an array: ${books.error}` );
@@ -98,15 +98,13 @@ class Search extends Component {
 
     handleAutoSuggest = (e) => {
         const value = e.target.textContent;
-        this.updateInput(value);
+        this.searchInput.value = value;
         this.updateResults(value);
         this.setState({
             query: value,
             suggestions: []
         });
     }
-
-    updateInput = (val) => this.searchInput.value = val;
 
     render() {
             /**
