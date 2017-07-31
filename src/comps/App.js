@@ -4,6 +4,7 @@ import * as api from '../utils/BooksAPI';
 import BookList from './BookList';
 import Header from './Header';
 import Search from './Search';
+import sortBy from 'sort-by';
 
 class App extends Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class App extends Component {
 
     updateBooks = () => {
         api.getAll().then(myBooks => {
-            this.setState({myBooks});
+            const bookList = myBooks.sort(sortBy('title'));
+            this.setState({myBooks: bookList});
         });
     }
 

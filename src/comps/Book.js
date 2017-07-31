@@ -24,16 +24,26 @@ class Book extends Component {
                 {book.imageLinks && (
                     <img className="book-card__image" src={book.imageLinks.thumbnail} alt={book.title} />
                 )}
+                {book.maturityRating === 'MATURE' && (
+                    <span className="book-card__mature">Mature</span>
+                )}
                 {book.title && <h4 className="book-card__title">{book.title}</h4>}
                 {book.authors && (
                     <div className="book-card__authors">
-                        {book.authors.map((author, index) => (
-                            <span key={index}>
-                                {author}
-                                {index !== (book.authors.length - 1) && ', '}
-                            </span>
-                        ))}
+                        <p>
+                            {book.authors.map((author, index) => (
+                                <span key={index}>
+                                    {author}
+                                    {index !== (book.authors.length - 1) && ', '}
+                                </span>
+                            ))}
+                        </p>
                     </div>
+                )}
+                {book.publishedDate && (
+                    <p><small>
+                        <strong>Published: {book.publishedDate}</strong>
+                    </small></p>
                 )}
                 <select onChange={this.handleShelfUpdate} value={this.state.shelf} className="book-card__location">
                     <option disabled label="Choose a Shelf:" />

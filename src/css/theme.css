@@ -1,4 +1,4 @@
-body {
+ body {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
@@ -7,6 +7,10 @@ body {
 a {
     color: #FF3B58;
     text-decoration: none;
+}
+
+p {
+    margin: 0 0 10px 0;
 }
 
 .wrap {
@@ -23,14 +27,12 @@ a {
     margin-bottom: 40px;
 }
 
-/* Book Shelf */
 .book-shelf__section {
     border-bottom: 2px solid #194756;
     margin: 0 0 40px;
     padding-bottom: 10px;
 }
 
-/* Search */
 .search-wrap__query {
     padding: 0;
 }
@@ -63,10 +65,46 @@ a {
 
 .book-grid {
     display: grid;
-    grid-template-columns: repeat( 5, minmax(128px, 1fr) );
     grid-gap: 20px;
+    grid-template-columns: repeat( 5, 1fr );
     margin-bottom: 40px;
     padding-left: 0;
+}
+
+.book-grid li {
+    list-style: none;
+    padding: 20px;
+}
+
+.book-grid .book-grid__filter {
+    grid-column: span 6;
+    padding: 0;
+}
+
+.book-grid .book-grid__filter li,
+.book-grid .book-grid__filter ul {
+    display: block;
+    padding: 0;
+}
+
+.book-grid .book-grid__filter .book-card {
+    float: right;
+    padding: 20px;
+}
+
+.book-grid .book-grid__filter .book-card,
+.book-grid .book-grid__filter .book-card:focus,
+.book-grid .book-grid__filter .book-card:hover {
+    box-shadow: none;
+    transform: scale(1);
+}
+
+.book-grid .book-grid__filter .book-card label {
+    margin-right: 5px;
+}
+
+.book-grid .book-grid__filter .book-card label:not(:first-of-type) {
+    margin-left: 20px;
 }
 
 .book-grid__notice {
@@ -78,13 +116,9 @@ a {
 .book-card {
     background: #f5f5f5;
     box-shadow: 0 0 0 rgba(0,0,0,.4);
-    border: 1px solid #194756;
-    padding: 20px;
     display: grid;
-    align-items: start;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto 50px;
-    transform: scale(0.98);
+    grid-template-rows: 1fr repeat(3, auto);
     transition: box-shadow .15s ease-in-out, transform .15s ease-in-out;
     position: relative;
 }
@@ -92,7 +126,7 @@ a {
 .book-card:focus,
 .book-card:hover {
     box-shadow: 0 5px 50px rgba(0,0,0,.4);
-    transform: scale(1);
+    transform: scale(1.02);
 }
 
 .book-card:focus .book-card__location,
@@ -101,8 +135,25 @@ a {
     opacity: 1;
 }
 
-.book-card__title {
-    margin-bottom: 5px;
+.book-card__image {
+    justify-self: center;
+}
+
+.book-card__title,
+.book-card__authors {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.book-card__mature {
+    background: red;
+    box-shadow: 0 2px 10px rgba(0,0,0,.4);
+    color: #fff;
+    display: block;
+    padding: 5px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
 }
 
 .book-card__authors {
