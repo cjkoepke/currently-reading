@@ -59,21 +59,20 @@ class BookList extends Component {
         });
     }
 
-    handleMature = (e) => {
+    handleMature = () => {
+        this.setState((prevState, props) => {
+            if (!prevState.mature) {
+                return {
+                    books: props.books,
+                    mature: true
+                }
+            }
 
-        const show = !this.state.mature;
-
-        show &&
-            this.setState((state, props) => ({
-                books: props.books,
-                mature: true
-            }));
-
-        !show &&
-            this.setState((state) => ({
-                books: state.books.filter(book => book.maturityRating !== 'MATURE'),
+            return {
+                books: prevState.books.filter(book => book.maturityRating !== 'MATURE'),
                 mature: false
-            }));
+            }
+        });
     }
 
     render() {
